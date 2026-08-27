@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberForges - Free Website Security Checker & Vulnerability Scanner</title>
-    <meta name="description" content="Protect your small business website with CyberForges free instant security scanner. Check HTTPS, SSL certificates, and security headers in seconds.">
-    <meta name="keywords" content="website security checker, free ssl checker, vulnerability scanner, small business cybersecurity, cyberforges">
+    <!-- SEO Meta Tags for Top Google Ranking -->
+    <meta name="description" content="Protect your online business with CyberForges free instant website security scanner. Check HTTPS, SSL certificates, and security headers in seconds.">
+    <meta name="keywords" content="website security checker, free ssl checker, vulnerability scanner, small business cybersecurity, cyberforges, website audit tool">
     <meta name="author" content="Talha Tahir">
     
     <!-- Tailwind CSS -->
@@ -13,33 +14,57 @@
     <!-- jsPDF Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
 
     <!-- Header / Navbar -->
-    <header class="border-b border-slate-800 py-4 px-6 flex justify-between items-center bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+    <header class="border-b border-slate-800 py-4 px-6 md:px-12 flex justify-between items-center bg-slate-900/80 backdrop-blur sticky top-0 z-50">
         <div class="flex items-center space-x-2">
-            <span class="text-xl font-bold tracking-wider text-cyan-400">CYBERFORGES</span>
+            <span class="text-xl font-extrabold tracking-wider text-cyan-400">CYBERFORGES</span>
             <span class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Security Suite</span>
         </div>
-        <div class="text-sm text-slate-400 hidden sm:block">Expert Web Solutions & Security</div>
+        <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-300">
+            <a href="#scanner" class="hover:text-cyan-400 transition">Free Scanner</a>
+            <a href="#features" class="hover:text-cyan-400 transition">Features</a>
+            <a href="#about" class="hover:text-cyan-400 transition">About Us</a>
+        </nav>
+        <div>
+            <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
+                Scan Website
+            </a>
+        </div>
     </header>
 
-    <!-- Main Hero & Scanner Container -->
+    <!-- Main Content -->
     <main class="flex-grow">
-        <section class="max-w-4xl mx-auto px-4 pt-16 pb-8 text-center">
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Secure Your Digital Business with <span class="text-cyan-400">CyberForges</span>
+        
+        <!-- Hero Section -->
+        <section class="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
+            <div class="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-semibold">
+                🚀 Trusted Security & Web Development Agency
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Secure Your Digital Business with <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">CyberForges</span>
             </h1>
-            <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-8">
-                Instantly check your website's security posture, identify missing SSL headers, and generate a professional security report for free.
+            <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-10">
+                Instantly check your website's security posture, identify missing SSL headers, protect customer data, and generate professional PDF audit reports for free.
             </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-8 rounded-xl transition shadow-lg shadow-cyan-500/20">
+                    Start Free Scan Now
+                </a>
+                <a href="#features" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold py-3 px-8 rounded-xl transition">
+                    Learn More
+                </a>
+            </div>
         </section>
 
-        <!-- Scanner Card -->
-        <section class="max-w-xl mx-auto px-4 pb-20">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
-                <h2 class="text-xl font-bold text-center mb-2">Free Instant Website Scan</h2>
-                <p class="text-slate-400 text-center text-xs mb-6">Enter your domain name below to start the automated assessment.</p>
+        <!-- Scanner Section (Interactive Tool) -->
+        <section id="scanner" class="max-w-xl mx-auto px-4 py-12">
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
+                
+                <h2 class="text-2xl font-bold text-center mb-2">Free Instant Website Scan</h2>
+                <p class="text-slate-400 text-center text-xs mb-6">Enter your domain name below to start the live automated security assessment.</p>
                 
                 <!-- Scan Form -->
                 <form id="scanForm" class="space-y-4">
@@ -69,7 +94,7 @@
                     <!-- Lead Capture Box -->
                     <div class="mt-6 p-5 bg-slate-950 rounded-xl border border-cyan-900/50">
                         <h4 class="text-sm font-bold text-cyan-300 mb-1">Want a full security audit & expert fix?</h4>
-                        <p class="text-xs text-slate-400 mb-4">Get in touch with CyberForges security team to protect your business.</p>
+                        <p class="text-xs text-slate-400 mb-4">Get in touch with CyberForges security team to protect your online presence.</p>
                         <form id="leadForm" class="space-y-3">
                             <input type="text" id="leadName" placeholder="Your Name" required
                                 class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-cyan-500">
@@ -85,15 +110,48 @@
                 </div>
             </div>
         </section>
+
+        <!-- Features Grid Section (Crucial for SEO & Ranking) -->
+        <section id="features" class="max-w-6xl mx-auto px-4 py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">Comprehensive Security Protection</h2>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto">We analyze critical vectors to ensure your website is safe from common cyber threats.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">🔒</div>
+                    <h3 class="font-bold text-base mb-2">SSL & HTTPS Verification</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Ensure your SSL certificates are active, valid, and properly encrypting visitor traffic against man-in-the-middle attacks.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">🛡️</div>
+                    <h3 class="font-bold text-base mb-2">Security Headers Audit</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Check for missing protection headers like Strict-Transport-Security (HSTS) and X-Frame-Options to block XSS and clickjacking.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">📊</div>
+                    <h3 class="font-bold text-base mb-2">Instant PDF Reports</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Generate structured, professional security assessment reports instantly to share with clients or your internal tech team.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="max-w-4xl mx-auto px-4 py-16 border-t border-slate-900 text-center">
+            <h2 class="text-2xl font-bold mb-4">About CyberForges</h2>
+            <p class="text-slate-400 text-sm max-w-2xl mx-auto leading-relaxed">
+                CyberForges is a premier digital solutions and web security agency dedicated to safeguarding small and enterprise businesses. Founded by security experts, we build robust web applications and provide top-tier vulnerability assessments.
+            </p>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        &copy; 2026 CyberForges. All rights reserved. Professional Security & Development Solutions.
+    <footer class="border-t border-slate-800 py-8 px-6 text-center text-xs text-slate-500 bg-slate-900/30">
+        <div class="mb-2 font-semibold text-slate-400">CyberForges Security & Development Suite</div>
+        &copy; 2026 CyberForges. All rights reserved. Designed for professional web protection.
     </footer>
 
     <script>
-        // NOTE: Jab aap backend live karein, toh yeh localhost link hata kar apna Render URL yahan daal dein
         const API_URL = 'https://cyberforges.onrender.com';
 
         let scannedDomain = '';
@@ -145,7 +203,7 @@
                     resultsContent.innerHTML = `<p class="text-rose-400">Error: ${data.error || 'Something went wrong.'}</p>`;
                 }
             } catch (err) {
-                resultsContent.innerHTML = `<p class="text-rose-400">Could not connect to the backend server. Make sure server.js is running.</p>`;
+                resultsContent.innerHTML = `<p class="text-rose-400">Could not connect to the backend server. Make sure server is online.</p>`;
             }
         });
 
