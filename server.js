@@ -3,6 +3,7 @@ const cors = require('cors');
 const https = require('https');
 const sqlite3 = require('sqlite3').verbose();
 const nodemailer = require('nodemailer');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -10,13 +11,16 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Initialize SQLite Database
-const db = new sqlite3.Database('./database.sqlite', (err) => {
+// Initialize SQLite Database with proper path handling
+const dbPath = process.env.RENDER 
+    ? path.join('/opt/render/project/src', 'database.sqlite') 
+    : './database.sqlite';
+
+const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error('Error opening database', err.message);
     } else {
-        console.log('Connected to the SQLite database.');
-        // Create leads table if it doesn't exist
+        console.log('Connected to the SQLite database at:', dbPath);
         db.run(`CREATE TABLE IF NOT EXISTS leads (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
