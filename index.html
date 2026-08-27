@@ -84,35 +84,35 @@
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold text-cyan-400">Scan Results & Analysis</h3>
                         <button id="downloadPdfBtn" onclick="downloadPDF()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition cursor-pointer flex items-center space-x-1">
-                            <span>Download PDF Report</span>
+                            <span>Download Professional PDF</span>
                         </button>
                     </div>
                     <div id="resultsContent" class="space-y-3 text-sm text-slate-300">
                         <!-- Dynamic results -->
                     </div>
 
-                    <!-- Pop-up Consultation Call-to-Action Box -->
-                    <div id="consultationBox" class="hidden mt-6 p-6 bg-gradient-to-r from-cyan-950/80 to-slate-900 rounded-2xl border border-cyan-400/60 shadow-2xl relative overflow-hidden transition-all duration-500 transform scale-100">
+                    <!-- Consultation Call-to-Action Box (Appears after scan) -->
+                    <div id="consultationBox" class="hidden mt-6 p-6 bg-gradient-to-r from-cyan-950/90 to-slate-900 rounded-2xl border border-cyan-400/60 shadow-2xl relative overflow-hidden transition-all duration-500">
                         <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-400"></div>
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="text-lg">🛡️</span>
-                            <h4 class="text-sm font-extrabold text-cyan-300 uppercase tracking-wider">Vulnerabilities Detected? Get Expert Help!</h4>
+                            <span class="text-xl">🛡️</span>
+                            <h4 class="text-sm font-extrabold text-cyan-300 uppercase tracking-wider">Vulnerabilities Found? Consultant se Rabta Karein!</h4>
                         </div>
                         <p class="text-xs text-slate-300 mb-4 leading-relaxed">
-                            Our cybersecurity engineers can fix missing headers, secure your SSL configuration, and harden your web app against cyber attacks.
+                            Aapki website mein kuch security headers missing hain ya SSL mazeed secure ho sakta hai. Hamare expert cybersecurity consultant se abhi rabta karein aur apni site ko 100% safe banayein!
                         </p>
                         
                         <form id="leadForm" class="space-y-3">
-                            <input type="text" id="leadName" placeholder="Your Full Name" required
+                            <input type="text" id="leadName" placeholder="Aap Ka Naam (Your Name)" required
                                 class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 transition">
-                            <input type="email" id="leadEmail" placeholder="Your Business Email Address" required
+                            <input type="email" id="leadEmail" placeholder="Aap Ka Email Address" required
                                 class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 transition">
                             <button type="submit" 
                                 class="w-full bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 text-slate-950 font-extrabold py-3 px-4 rounded-xl text-xs transition shadow-lg shadow-cyan-500/20 cursor-pointer">
-                                Claim Free Security Consultation & Audit
+                                🚀 Consultant Se Rabta Karein (Get Expert Help)
                             </button>
                         </form>
-                        <p id="leadSuccess" class="hidden mt-3 text-xs text-emerald-400 text-center font-bold bg-emerald-950/50 py-2 rounded-lg border border-emerald-800">🎉 Thank you! Our security team has received your request and will contact you shortly.</p>
+                        <p id="leadSuccess" class="hidden mt-3 text-xs text-emerald-400 text-center font-bold bg-emerald-950/50 py-2 rounded-lg border border-emerald-800">🎉 Shukriya! Hamari security team ne aapki requestreceive kar li hai, hum jald aapse rabta karenge.</p>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                 if (response.ok) {
                     downloadBtn.classList.remove('hidden');
                     
-                    // Pop up consultation box smoothly after scan
+                    // Show consultation pop-up box smoothly
                     consultationBox.classList.remove('hidden');
                     consultationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -221,18 +221,19 @@
             }
         });
 
+        // Highly Professional & Attractive PDF Generator
         function downloadPDF() {
             if (!lastScanData) return;
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // 1. Top Header Background (Dark Navy)
+            // 1. Executive Top Header Banner (Dark Navy)
             doc.setFillColor(15, 23, 42);
-            doc.rect(0, 0, 210, 45, 'F');
+            doc.rect(0, 0, 210, 50, 'F');
 
-            // Header Brand Title
+            // Brand Title
             doc.setTextColor(6, 182, 212);
-            doc.setFontSize(20);
+            doc.setFontSize(22);
             doc.setFont("helvetica", "bold");
             doc.text("CYBERFORGES", 20, 22);
 
@@ -240,69 +241,90 @@
             doc.setTextColor(148, 163, 184);
             doc.setFontSize(10);
             doc.setFont("helvetica", "normal");
-            doc.text("Security Intelligence & Vulnerability Assessment", 20, 30);
+            doc.text("Executive Cybersecurity & Vulnerability Assessment Report", 20, 31);
 
-            // Date on top right
+            // Report Metadata (Right Aligned)
             doc.setTextColor(203, 213, 225);
             doc.setFontSize(9);
-            doc.text(`Date: ${new Date().toLocaleDateString()}`, 155, 26);
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 150, 22);
+            doc.text("Status: Confidential", 150, 31);
 
-            // 2. Target & Score Card Background
-            doc.setFillColor(241, 245, 249);
-            doc.roundedRect(20, 55, 170, 25, 3, 3, 'F');
+            // 2. Summary Card (Target & Score Box)
+            doc.setFillColor(248, 250, 252);
+            doc.setDrawColor(226, 232, 240);
+            doc.roundedRect(20, 60, 170, 28, 3, 3, 'FD');
 
             doc.setTextColor(30, 41, 59);
             doc.setFontSize(11);
             doc.setFont("helvetica", "bold");
-            doc.text(`Target Domain:`, 26, 68);
+            doc.text("Target Domain:", 28, 77);
             doc.setTextColor(6, 182, 212);
-            doc.text(`${lastScanData.domain}`, 58, 68);
+            doc.text(lastScanData.domain, 62, 77);
 
             doc.setTextColor(30, 41, 59);
-            doc.text(`Security Score:`, 130, 68);
+            doc.text("Overall Score:", 125, 77);
             doc.setTextColor(16, 185, 129);
-            doc.text(`${lastScanData.score} / 100`, 160, 68);
+            doc.text(`${lastScanData.score} / 100`, 155, 77);
 
-            // 3. Section Divider Heading
+            // 3. Section Heading
             doc.setTextColor(15, 23, 42);
-            doc.setFontSize(13);
+            doc.setFontSize(14);
             doc.setFont("helvetica", "bold");
-            doc.text("Detailed Security Audit Breakdown:", 20, 95);
+            doc.text("Detailed Vulnerability & Header Analysis:", 20, 105);
 
-            // 4. Detailed Checks Boxes
+            // 4. Detailed Security Audit Blocks
             const checks = [
                 { title: "HTTPS & SSL Enforcement", desc: lastScanData.checks.https.description },
-                { title: "TLS Handshake & Encryption", desc: lastScanData.checks.ssl.description },
-                { title: "Security Protection Headers", desc: lastScanData.checks.headers.description }
+                { title: "TLS Handshake & Encryption Protocol", desc: lastScanData.checks.ssl.description },
+                { title: "Security Protection Headers (HSTS, X-Frame)", desc: lastScanData.checks.headers.description }
             ];
 
-            let startY = 105;
+            let startY = 115;
             checks.forEach((item, index) => {
-                doc.setDrawColor(226, 232, 240);
+                doc.setDrawColor(203, 213, 225);
                 doc.setFillColor(255, 255, 255);
-                doc.roundedRect(20, startY, 170, 26, 2, 2, 'FD');
+                doc.roundedRect(20, startY, 170, 30, 2, 2, 'FD');
+
+                // Accent vertical line inside card
+                doc.setFillColor(6, 182, 212);
+                doc.rect(20, startY, 2, 30, 'F');
 
                 doc.setTextColor(15, 23, 42);
                 doc.setFontSize(10);
                 doc.setFont("helvetica", "bold");
-                doc.text(`${index + 1}. ${item.title}`, 26, startY + 9);
+                doc.text(`${index + 1}. ${item.title}`, 28, startY + 10);
 
                 doc.setTextColor(71, 85, 105);
                 doc.setFontSize(9);
                 doc.setFont("helvetica", "normal");
-                doc.text(item.desc, 26, startY + 18, { maxWidth: 158 });
+                doc.text(item.desc, 28, startY + 20, { maxWidth: 155 });
 
-                startY += 34;
+                startY += 38;
             });
 
-            // 5. Professional Footer
-            doc.setDrawColor(203, 213, 225);
-            doc.line(20, 270, 190, 270);
+            // 5. Professional Call-to-Action Box inside PDF
+            doc.setFillColor(240, 253, 250);
+            doc.setDrawColor(153, 246, 228);
+            doc.roundedRect(20, startY + 5, 170, 32, 3, 3, 'FD');
+
+            doc.setTextColor(13, 148, 136);
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "bold");
+            doc.text("Need Professional Security Fixes?", 28, startY + 16);
+
+            doc.setTextColor(51, 65, 85);
+            doc.setFontSize(8.5);
+            doc.setFont("helvetica", "normal");
+            doc.text("Contact CyberForges security engineers today to secure your infrastructure against cyber threats and harden your web application.", 28, startY + 24, { maxWidth: 155 });
+
+            // 6. Footer
+            doc.setDrawColor(226, 232, 240);
+            doc.line(20, 275, 190, 275);
 
             doc.setTextColor(100, 116, 139);
             doc.setFontSize(8);
-            doc.text("CyberForges Security Suite — Confidential Audit Report", 20, 278);
-            doc.text("Generated via security.cyberforges.com", 140, 278);
+            doc.text("CyberForges Security Intelligence — Confidential Audit Report", 20, 283);
+            doc.text("security.cyberforges.com", 165, 283);
 
             doc.save(`CyberForges_Security_Report_${lastScanData.domain}.pdf`);
         }
