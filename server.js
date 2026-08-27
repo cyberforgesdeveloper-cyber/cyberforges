@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const https = require('https');
+const dns = require('dns');
 const sqlite3 = require('sqlite3').verbose();
 const nodemailer = require('nodemailer');
 const path = require('path');
@@ -40,39 +41,49 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Helper function for security check with strict domain verification
+// Helper function for security check with strict DNS and domain verification
 const checkWebsiteSecurity = (domain) => {
     return new Promise((resolve) => {
-        // Basic check for invalid TLDs or gibberish domains
-        if (!domain.includes('.') || domain.endsWith('.')) {
-            return resolve({ error: 'Invalid domain format. Please enter a valid website domain (e.g. example.com)' });
+        const cleanDomain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '').trim();
+
+        // 1. Basic format check
+        if (!cleanDomain.includes('.') || cleanDomain.endsWith('.')) {
+            return resolve({ error: 'Invalid domain format. Please enter a valid registered domain (e.g. example.com)' });
         }
 
-        const targetUrl = `https://${domain}`;
-        
-        https.get(targetUrl, (res) => {
-            const headers = res.headers;
-            const hasHsts = !!headers['strict-transport-security'];
-            const hasXFrame = !!headers['x-frame-options'];
-            const hasCsp = !!headers['content-security-policy'];
-            
-            let score = 60;
-            if (hasHsts) score += 15;
-            if (hasXFrame) score += 15;
-            if (hasCsp) score += 10;
+        // 2. DNS lookup to check if domain actually exists / is registered
+        dns.lookup(cleanDomain, (err) => {
+            if (err) {
+                return resolve({ error: `Domain "${cleanDomain}" is not registered or does not exist. Please enter a valid domain.` });
+            }
 
-            resolve({
-                domain: domain,
-                score: Math.min(score, 100),
-                checks: {
-                    https: { status: 'Pass', description: `Site uses valid SSL/TLS and responds securely via HTTPS.` },
-                    ssl: { status: 'Pass', description: `Certificate issuer verified via secure handshake.` },
-                    headers: { status: (hasHsts || hasXFrame) ? 'Pass' : 'Warning', description: `HSTS: ${hasHsts ? 'Present' : 'Missing'}, X-Frame-Options: ${hasXFrame ? 'Present' : 'Missing'}` }
-                }
-            });
-        }).on('error', () => {
-            resolve({
-                error: `Could not resolve domain "${domain}". Please check if the domain is active and spelled correctly.`
+            // 3. HTTPS connection check
+            const targetUrl = `https://${cleanDomain}`;
+            
+            https.get(targetUrl, (res) => {
+                const headers = res.headers;
+                const hasHsts = !!headers['strict-transport-security'];
+                const hasXFrame = !!headers['x-frame-options'];
+                const hasCsp = !!headers['content-security-policy'];
+                
+                let score = 60;
+                if (hasHsts) score += 15;
+                if (hasXFrame) score += 15;
+                if (hasCsp) score += 10;
+
+                resolve({
+                    domain: cleanDomain,
+                    score: Math.min(score, 100),
+                    checks: {
+                        https: { status: 'Pass', description: `Site uses valid SSL/TLS and responds securely via HTTPS.` },
+                        ssl: { status: 'Pass', description: `Certificate issuer verified via secure handshake.` },
+                        headers: { status: (hasHsts || hasXFrame) ? 'Pass' : 'Warning', description: `HSTS: ${hasHsts ? 'Present' : 'Missing'}, X-Frame-Options: ${hasXFrame ? 'Present' : 'Missing'}` }
+                    }
+                });
+            }).on('error', () => {
+                resolve({
+                    error: `Could not establish a secure connection to "${cleanDomain}". Ensure the site has an active SSL certificate.`
+                });
             });
         });
     });
@@ -83,8 +94,7 @@ app.post('/api/scan', async (req, res) => {
     const { domain } = req.body;
     if (!domain) return res.status(400).json({ error: 'Domain is required' });
 
-    const cleanDomain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '').trim();
-    const scanResults = await checkWebsiteSecurity(cleanDomain);
+    const scanResults = await checkWebsiteSecurity(domain);
     
     if (scanResults.error) {
         return res.status(400).json({ error: scanResults.error });
@@ -93,7 +103,7 @@ app.post('/api/scan', async (req, res) => {
     res.json(scanResults);
 });
 
-// Lead capture route & Email Notification to cyberforgesdeveloper@gmail.com
+// Lead capture route & Email Notification
 app.post('/api/lead', (req, res) => {
     const { name, email, domain } = req.body;
     if (!name || !email) {

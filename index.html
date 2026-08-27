@@ -205,7 +205,7 @@
                 const data = await response.json();
 
                 if (!response.ok) {
-                    resultsContent.innerHTML = `<p class="text-rose-400 font-semibold text-xs sm:text-sm">❌ ${data.error || 'Invalid domain or unreachable site.'}</p>`;
+                    resultsContent.innerHTML = `<p class="text-rose-400 font-semibold text-xs sm:text-sm">❌ ${data.error || 'Invalid domain or unregistered site.'}</p>`;
                     return;
                 }
                 
