@@ -91,8 +91,8 @@
                         <!-- Dynamic results -->
                     </div>
 
-                    <!-- Highlighted Consultation Call-to-Action Box -->
-                    <div id="consultationBox" class="hidden mt-6 p-6 bg-gradient-to-r from-cyan-950/60 to-slate-900 rounded-2xl border border-cyan-500/40 shadow-xl relative overflow-hidden">
+                    <!-- Pop-up Consultation Call-to-Action Box -->
+                    <div id="consultationBox" class="hidden mt-6 p-6 bg-gradient-to-r from-cyan-950/80 to-slate-900 rounded-2xl border border-cyan-400/60 shadow-2xl relative overflow-hidden transition-all duration-500 transform scale-100">
                         <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-400"></div>
                         <div class="flex items-center space-x-2 mb-2">
                             <span class="text-lg">🛡️</span>
@@ -118,7 +118,7 @@
             </div>
         </section>
 
-        <!-- Features Grid Section (Crucial for SEO & Ranking) -->
+        <!-- Features Grid Section -->
         <section id="features" class="max-w-6xl mx-auto px-4 py-20">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-3">Comprehensive Security Protection</h2>
@@ -191,7 +191,11 @@
 
                 if (response.ok) {
                     downloadBtn.classList.remove('hidden');
+                    
+                    // Pop up consultation box smoothly after scan
                     consultationBox.classList.remove('hidden');
+                    consultationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
                     resultsContent.innerHTML = `
                         <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mb-4">
                             <div class="text-sm text-slate-400">Target Domain: <span class="text-cyan-400 font-semibold">${data.domain}</span></div>
