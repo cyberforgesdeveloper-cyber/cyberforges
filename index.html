@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberForges - Free Website Security & SEO Ranking Checker</title>
-    <!-- SEO Meta Tags for Top Google Ranking -->
     <meta name="description" content="Protect your online business with CyberForges free instant website security scanner and Google SEO ranking analyzer. Check HTTPS, SSL, and SEO health in seconds.">
     <meta name="keywords" content="website security checker, free seo audit, google ranking checker, ssl scanner, small business cybersecurity, cyberforges">
     <meta name="author" content="Talha Tahir">
     
-    <!-- Advanced Netlify Badge Remover (CSS & JS) -->
+    <!-- Netlify Badge Remover -->
     <style>
         #netlify-badge, iframe[src*="netlify"], div[style*="z-index: 99999"] {
             display: none !important;
@@ -80,7 +79,7 @@
             </div>
         </section>
 
-        <!-- Scanner Section (Interactive Tool) -->
+        <!-- Scanner Section -->
         <section id="scanner" class="max-w-xl mx-auto px-4 py-8 sm:py-12">
             <div class="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl relative overflow-hidden">
                 <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
@@ -88,7 +87,6 @@
                 <h2 class="text-xl sm:text-2xl font-bold text-center mb-2">Instant Website & SEO Audit</h2>
                 <p class="text-slate-300 text-center text-xs sm:text-sm mb-6 sm:mb-8">Enter your domain name below to start security and Google ranking analysis.</p>
                 
-                <!-- Scan Form -->
                 <form id="scanForm" class="space-y-4 sm:space-y-5">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Website Domain</label>
@@ -101,7 +99,6 @@
                     </button>
                 </form>
 
-                <!-- Results Section -->
                 <div id="resultsSection" class="hidden mt-8 pt-6 border-t border-slate-800">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
                         <h3 class="text-lg sm:text-xl font-bold text-cyan-400">Audit & SEO Results</h3>
@@ -109,11 +106,8 @@
                             <span>Download Professional PDF</span>
                         </button>
                     </div>
-                    <div id="resultsContent" class="space-y-4 text-sm sm:text-base text-slate-200">
-                        <!-- Dynamic results -->
-                    </div>
+                    <div id="resultsContent" class="space-y-4 text-sm sm:text-base text-slate-200"></div>
 
-                    <!-- Consultation Call-to-Action Box -->
                     <div id="consultationBox" class="hidden mt-8 p-5 sm:p-6 bg-gradient-to-r from-cyan-950/90 to-slate-900 rounded-2xl border border-cyan-400/60 shadow-2xl relative overflow-hidden transition-all duration-500">
                         <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-400"></div>
                         <div class="flex items-center space-x-2 mb-2">
@@ -140,7 +134,7 @@
             </div>
         </section>
 
-        <!-- Features Grid Section -->
+        <!-- Features Section -->
         <section id="features" class="max-w-6xl mx-auto px-4 py-16 sm:py-20">
             <div class="text-center mb-10 sm:mb-12">
                 <h2 class="text-2xl sm:text-3xl font-extrabold mb-3">Comprehensive Website Intelligence</h2>
@@ -165,7 +159,7 @@
             </div>
         </section>
 
-        <!-- About Us Section -->
+        <!-- About Section -->
         <section id="about" class="max-w-4xl mx-auto px-4 py-12 sm:py-16 border-t border-slate-900 text-center">
             <h2 class="text-xl sm:text-2xl font-bold mb-4">About CyberForges</h2>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed px-2">
@@ -209,6 +203,11 @@
                 });
 
                 const data = await response.json();
+
+                if (!response.ok) {
+                    resultsContent.innerHTML = `<p class="text-rose-400 font-semibold text-xs sm:text-sm">❌ ${data.error || 'Invalid domain or unreachable site.'}</p>`;
+                    return;
+                }
                 
                 lastScanData = {
                     ...data,
@@ -216,50 +215,43 @@
                     seoStatus: "Domain is reachable. Basic SEO meta tags detected. Optimized for Google indexing."
                 };
 
-                if (response.ok) {
-                    downloadBtn.classList.remove('hidden');
-                    
-                    consultationBox.classList.remove('hidden');
-                    consultationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                downloadBtn.classList.remove('hidden');
+                consultationBox.classList.remove('hidden');
+                consultationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-                    resultsContent.innerHTML = `
-                        <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-5">
-                            <div class="bg-slate-950 p-3 sm:p-4 rounded-2xl border border-slate-800 text-center">
-                                <div class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Security Score</div>
-                                <div class="text-lg sm:text-xl font-extrabold text-emerald-400 mt-1">${data.score}/100</div>
-                            </div>
-                            <div class="bg-slate-950 p-3 sm:p-4 rounded-2xl border border-slate-800 text-center">
-                                <div class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Google SEO Score</div>
-                                <div class="text-lg sm:text-xl font-extrabold text-cyan-400 mt-1">${lastScanData.seoScore}/100</div>
-                            </div>
+                resultsContent.innerHTML = `
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-5">
+                        <div class="bg-slate-950 p-3 sm:p-4 rounded-2xl border border-slate-800 text-center">
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Security Score</div>
+                            <div class="text-lg sm:text-xl font-extrabold text-emerald-400 mt-1">${data.score}/100</div>
                         </div>
-                        <div class="space-y-3">
-                            <div class="p-3 sm:p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-xs sm:text-sm">
-                                <span class="font-bold text-cyan-300 block mb-1">🔒 HTTPS & SSL:</span> ${data.checks.https.description}
-                            </div>
-                            <div class="p-3 sm:p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-xs sm:text-sm">
-                                <span class="font-bold text-yellow-300 block mb-1">🛡️ Security Headers:</span> ${data.checks.headers.description}
-                            </div>
-                            <div class="p-3 sm:p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-xs sm:text-sm">
-                                <span class="font-bold text-emerald-300 block mb-1">📈 Google Ranking / SEO:</span> ${lastScanData.seoStatus}
-                            </div>
+                        <div class="bg-slate-950 p-3 sm:p-4 rounded-2xl border border-slate-800 text-center">
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Google SEO Score</div>
+                            <div class="text-lg sm:text-xl font-extrabold text-cyan-400 mt-1">${lastScanData.seoScore}/100</div>
                         </div>
-                    `;
-                } else {
-                    resultsContent.innerHTML = `<p class="text-rose-400 font-semibold text-xs sm:text-sm">Error: ${data.error || 'Something went wrong.'}</p>`;
-                }
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 sm:p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-xs sm:text-sm">
+                            <span class="font-bold text-cyan-300 block mb-1">🔒 HTTPS & SSL:</span> ${data.checks.https.description}
+                        </div>
+                        <div class="p-3 sm:p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-xs sm:text-sm">
+                            <span class="font-bold text-yellow-300 block mb-1">🛡️ Security Headers:</span> ${data.checks.headers.description}
+                        </div>
+                        <div class="p-3 sm:p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-xs sm:text-sm">
+                            <span class="font-bold text-emerald-300 block mb-1">📈 Google Ranking / SEO:</span> ${lastScanData.seoStatus}
+                        </div>
+                    </div>
+                `;
             } catch (err) {
                 resultsContent.innerHTML = `<p class="text-rose-400 font-semibold text-xs sm:text-sm">Could not connect to backend server.</p>`;
             }
         });
 
-        // High-End Professional PDF Generator
         function downloadPDF() {
             if (!lastScanData) return;
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Header Banner (Dark Navy)
             doc.setFillColor(15, 23, 42);
             doc.rect(0, 0, 210, 48, 'F');
 
@@ -278,7 +270,6 @@
             doc.text(`Date: ${new Date().toLocaleDateString()}`, 150, 22);
             doc.text("Status: Certified", 150, 31);
 
-            // Summary Card Box
             doc.setFillColor(248, 250, 252);
             doc.setDrawColor(226, 232, 240);
             doc.roundedRect(20, 58, 170, 25, 3, 3, 'FD');
@@ -291,7 +282,6 @@
             doc.text(`Security Score: ${lastScanData.score}/100`, 110, 74);
             doc.text(`SEO Rank: ${lastScanData.seoScore}/100`, 150, 74);
 
-            // Section Heading
             doc.setTextColor(15, 23, 42);
             doc.setFontSize(14);
             doc.setFont("helvetica", "bold");
@@ -325,7 +315,6 @@
                 startY += 38;
             });
 
-            // Footer
             doc.setDrawColor(226, 232, 240);
             doc.line(20, 275, 190, 275);
 

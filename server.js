@@ -40,9 +40,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Helper function for security check
+// Helper function for security check with strict domain verification
 const checkWebsiteSecurity = (domain) => {
     return new Promise((resolve) => {
+        // Basic check for invalid TLDs or gibberish domains
+        if (!domain.includes('.') || domain.endsWith('.')) {
+            return resolve({ error: 'Invalid domain format. Please enter a valid website domain (e.g. example.com)' });
+        }
+
         const targetUrl = `https://${domain}`;
         
         https.get(targetUrl, (res) => {
@@ -67,13 +72,7 @@ const checkWebsiteSecurity = (domain) => {
             });
         }).on('error', () => {
             resolve({
-                domain: domain,
-                score: 30,
-                checks: {
-                    https: { status: 'Fail', description: 'Could not establish a secure HTTPS connection.' },
-                    ssl: { status: 'Fail', description: 'SSL Certificate check failed or domain unreachable.' },
-                    headers: { status: 'Fail', description: 'Security headers could not be retrieved.' }
-                }
+                error: `Could not resolve domain "${domain}". Please check if the domain is active and spelled correctly.`
             });
         });
     });
@@ -84,8 +83,13 @@ app.post('/api/scan', async (req, res) => {
     const { domain } = req.body;
     if (!domain) return res.status(400).json({ error: 'Domain is required' });
 
-    const cleanDomain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    const cleanDomain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '').trim();
     const scanResults = await checkWebsiteSecurity(cleanDomain);
+    
+    if (scanResults.error) {
+        return res.status(400).json({ error: scanResults.error });
+    }
+    
     res.json(scanResults);
 });
 
@@ -107,7 +111,6 @@ app.post('/api/lead', (req, res) => {
         
         console.log(`New Lead Saved with ID: ${this.lastID}`);
 
-        // Email Notification payload
         const mailOptions = {
             from: 'cyberforgesdeveloper@gmail.com',
             to: 'cyberforgesdeveloper@gmail.com',
@@ -127,7 +130,6 @@ app.post('/api/lead', (req, res) => {
     });
 });
 
-// Get all captured leads (Admin Route)
 app.get('/api/leads', (req, res) => {
     const query = `SELECT * FROM leads ORDER BY id DESC`;
     db.all(query, [], (err, rows) => {
