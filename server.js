@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const https = require('https');
 const sqlite3 = require('sqlite3').verbose();
+const nodemailer = require('nodemailer');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -22,6 +24,15 @@ const db = new sqlite3.Database('./database.sqlite', (err) => {
             domain TEXT,
             date TEXT
         )`);
+    }
+});
+
+// Configure Nodemailer for cyberforgesdeveloper@gmail.com
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'cyberforgesdeveloper@gmail.com',
+        pass: 'T@lh@345'
     }
 });
 
@@ -74,7 +85,7 @@ app.post('/api/scan', async (req, res) => {
     res.json(scanResults);
 });
 
-// Lead capture route (Saved to SQLite database)
+// Lead capture route & Email Notification to cyberforgesdeveloper@gmail.com
 app.post('/api/lead', (req, res) => {
     const { name, email, domain } = req.body;
     if (!name || !email) {
@@ -89,12 +100,30 @@ app.post('/api/lead', (req, res) => {
             console.error(err.message);
             return res.status(500).json({ error: 'Failed to save lead in database' });
         }
-        console.log(`New Lead Saved to Database with ID: ${this.lastID}`);
-        res.json({ success: true, message: 'Lead saved successfully!' });
+        
+        console.log(`New Lead Saved with ID: ${this.lastID}`);
+
+        // Email Notification payload
+        const mailOptions = {
+            from: 'cyberforgesdeveloper@gmail.com',
+            to: 'cyberforgesdeveloper@gmail.com',
+            subject: `🚨 New CyberForges Security Lead from ${name}!`,
+            text: `Aapki website par ek naye client ne consultation request submit ki hai:\n\n- Client Name: ${name}\n- Client Email: ${email}\n- Target Domain: ${domain || 'N/A'}\n- Date/Time: ${new Date().toLocaleString()}\n\nForan admin panel par jaakar check karein!`
+        };
+
+        transporter.sendMail(mailOptions, (mailErr, info) => {
+            if (mailErr) {
+                console.error('Error sending email:', mailErr);
+            } else {
+                console.log('Email notification sent successfully:', info.response);
+            }
+        });
+
+        res.json({ success: true, message: 'Lead saved and email notification sent!' });
     });
 });
 
-// Get all captured leads from SQLite (Admin Route)
+// Get all captured leads (Admin Route)
 app.get('/api/leads', (req, res) => {
     const query = `SELECT * FROM leads ORDER BY id DESC`;
     db.all(query, [], (err, rows) => {
