@@ -17,18 +17,18 @@
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
 
     <!-- Header / Navbar -->
-    <header class="border-b border-slate-800 py-4 px-6 md:px-12 flex justify-between items-center bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <header class="border-b border-slate-800 py-5 px-6 md:px-12 flex justify-between items-center bg-slate-900/85 backdrop-blur sticky top-0 z-50">
         <div class="flex items-center space-x-2">
-            <span class="text-xl font-extrabold tracking-wider text-cyan-400">CYBERFORGES</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Audit Suite</span>
+            <span class="text-2xl font-extrabold tracking-wider text-cyan-400">CYBERFORGES</span>
+            <span class="text-xs px-2.5 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-800 font-semibold">Audit Suite</span>
         </div>
-        <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-300">
+        <nav class="hidden md:flex items-center space-x-8 text-base font-medium text-slate-300">
             <a href="#scanner" class="hover:text-cyan-400 transition">Free Audit Tool</a>
             <a href="#features" class="hover:text-cyan-400 transition">Features</a>
             <a href="#about" class="hover:text-cyan-400 transition">About Us</a>
         </nav>
         <div>
-            <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
+            <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg shadow-cyan-500/25">
                 Audit Website
             </a>
         </div>
@@ -38,21 +38,21 @@
     <main class="flex-grow">
         
         <!-- Hero Section -->
-        <section class="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
-            <div class="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-semibold">
+        <section class="max-w-5xl mx-auto px-4 pt-24 pb-16 text-center">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-sm font-semibold">
                 🚀 Security & Google SEO Audit Platform
             </div>
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
                 Analyze Website Security & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Google Ranking</span>
             </h1>
-            <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-10">
+            <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
                 Instantly check your website's security posture, SSL headers, and Google SEO visibility health. Generate professional audit reports for free.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-8 rounded-xl transition shadow-lg shadow-cyan-500/20">
+                <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-4 px-8 rounded-xl text-base transition shadow-lg shadow-cyan-500/25">
                     Start Free Audit Now
                 </a>
-                <a href="#features" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold py-3 px-8 rounded-xl transition">
+                <a href="#features" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold py-4 px-8 rounded-xl text-base transition">
                     Learn More
                 </a>
             </div>
@@ -60,59 +60,59 @@
 
         <!-- Scanner Section (Interactive Tool) -->
         <section id="scanner" class="max-w-xl mx-auto px-4 py-12">
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
                 
                 <h2 class="text-2xl font-bold text-center mb-2">Instant Website & SEO Audit</h2>
-                <p class="text-slate-400 text-center text-xs mb-6">Enter your domain name below to start security and Google ranking analysis.</p>
+                <p class="text-slate-300 text-center text-sm mb-8">Enter your domain name below to start security and Google ranking analysis.</p>
                 
                 <!-- Scan Form -->
-                <form id="scanForm" class="space-y-4">
+                <form id="scanForm" class="space-y-5">
                     <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Website Domain</label>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Website Domain</label>
                         <input type="text" id="domainInput" placeholder="e.g. example.com" required
-                            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-500 transition">
+                            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-base text-slate-100 focus:outline-none focus:border-cyan-500 transition">
                     </div>
                     <button type="submit" 
-                        class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-4 rounded-xl transition shadow-lg shadow-cyan-500/20 cursor-pointer">
+                        class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold py-3.5 px-4 rounded-xl text-base transition shadow-lg shadow-cyan-500/25 cursor-pointer">
                         Run Complete Audit
                     </button>
                 </form>
 
                 <!-- Results Section -->
                 <div id="resultsSection" class="hidden mt-8 pt-6 border-t border-slate-800">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-semibold text-cyan-400">Audit & SEO Results</h3>
-                        <button id="downloadPdfBtn" onclick="downloadPDF()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition cursor-pointer flex items-center space-x-1">
-                            <span>Download PDF Report</span>
+                    <div class="flex justify-between items-center mb-5">
+                        <h3 class="text-xl font-bold text-cyan-400">Audit & SEO Results</h3>
+                        <button id="downloadPdfBtn" onclick="downloadPDF()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-4 py-2 rounded-xl text-xs transition cursor-pointer flex items-center space-x-1 shadow-md">
+                            <span>Download Professional PDF</span>
                         </button>
                     </div>
-                    <div id="resultsContent" class="space-y-3 text-sm text-slate-300">
+                    <div id="resultsContent" class="space-y-4 text-base text-slate-200">
                         <!-- Dynamic results -->
                     </div>
 
                     <!-- Consultation Call-to-Action Box -->
-                    <div id="consultationBox" class="hidden mt-6 p-6 bg-gradient-to-r from-cyan-950/90 to-slate-900 rounded-2xl border border-cyan-400/60 shadow-2xl relative overflow-hidden transition-all duration-500">
+                    <div id="consultationBox" class="hidden mt-8 p-6 bg-gradient-to-r from-cyan-950/90 to-slate-900 rounded-2xl border border-cyan-400/60 shadow-2xl relative overflow-hidden transition-all duration-500">
                         <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-400"></div>
                         <div class="flex items-center space-x-2 mb-2">
                             <span class="text-xl">📈</span>
                             <h4 class="text-sm font-extrabold text-cyan-300 uppercase tracking-wider">Want Higher Google Ranking & Better Security?</h4>
                         </div>
-                        <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                        <p class="text-xs text-slate-300 mb-5 leading-relaxed">
                             Aapki website ki SEO visibility aur security ko top par le jane ke liye hamare experts se rabta karein. Free consultation claim karein!
                         </p>
                         
-                        <form id="leadForm" class="space-y-3">
+                        <form id="leadForm" class="space-y-4">
                             <input type="text" id="leadName" placeholder="Aap Ka Naam (Your Name)" required
-                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 transition">
+                                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-400 transition">
                             <input type="email" id="leadEmail" placeholder="Aap Ka Email Address" required
-                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 transition">
+                                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-cyan-400 transition">
                             <button type="submit" 
-                                class="w-full bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 text-slate-950 font-extrabold py-3 px-4 rounded-xl text-xs transition shadow-lg shadow-cyan-500/20 cursor-pointer">
+                                class="w-full bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 text-slate-950 font-extrabold py-3.5 px-4 rounded-xl text-sm transition shadow-lg shadow-cyan-500/25 cursor-pointer">
                                 🚀 Consultant Se Rabta Karein (Get Expert Help)
                             </button>
                         </form>
-                        <p id="leadSuccess" class="hidden mt-3 text-xs text-emerald-400 text-center font-bold bg-emerald-950/50 py-2 rounded-lg border border-emerald-800">🎉 Shukriya! Hamari team ne aapki request receive kar li hai, hum jald rabta karenge.</p>
+                        <p id="leadSuccess" class="hidden mt-3 text-xs text-emerald-400 text-center font-bold bg-emerald-950/50 py-2.5 rounded-lg border border-emerald-800">🎉 Shukriya! Hamari team ne aapki request receive kar li hai, hum jald rabta karenge.</p>
                     </div>
                 </div>
             </div>
@@ -121,24 +121,24 @@
         <!-- Features Grid Section -->
         <section id="features" class="max-w-6xl mx-auto px-4 py-20">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3">Comprehensive Website Intelligence</h2>
-                <p class="text-slate-400 text-sm max-w-xl mx-auto">We analyze security vectors and search engine ranking health in one place.</p>
+                <h2 class="text-3xl font-extrabold mb-3">Comprehensive Website Intelligence</h2>
+                <p class="text-slate-300 text-base max-w-xl mx-auto">We analyze security vectors and search engine ranking health in one place.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">🔒</div>
-                    <h3 class="font-bold text-base mb-2">SSL & Security Audit</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Check SSL certificates, encryption strength, and missing HTTP protection headers.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold text-lg mb-5 border border-cyan-800">🔒</div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-100">SSL & Security Audit</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">Check SSL certificates, encryption strength, and missing HTTP protection headers.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">📈</div>
-                    <h3 class="font-bold text-base mb-2">Google SEO & Ranking Health</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Analyze metadata, search indexing potential, and keyword optimization posture.</p>
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold text-lg mb-5 border border-cyan-800">📈</div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-100">Google SEO & Ranking Health</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">Analyze metadata, search indexing potential, and keyword optimization posture.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">📊</div>
-                    <h3 class="font-bold text-base mb-2">Professional PDF Reports</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Download executive reports containing complete security and SEO evaluations.</p>
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold text-lg mb-5 border border-cyan-800">📊</div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-100">Professional PDF Reports</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">Download executive reports containing complete security and SEO evaluations.</p>
                 </div>
             </div>
         </section>
@@ -146,15 +146,15 @@
         <!-- About Us Section -->
         <section id="about" class="max-w-4xl mx-auto px-4 py-16 border-t border-slate-900 text-center">
             <h2 class="text-2xl font-bold mb-4">About CyberForges</h2>
-            <p class="text-slate-400 text-sm max-w-2xl mx-auto leading-relaxed">
+            <p class="text-slate-300 text-base max-w-2xl mx-auto leading-relaxed">
                 CyberForges is a premier digital solutions and web security agency dedicated to safeguarding businesses and boosting their search engine rankings.
             </p>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 py-8 px-6 text-center text-xs text-slate-500 bg-slate-900/30">
-        <div class="mb-2 font-semibold text-slate-400">CyberForges Security & SEO Suite</div>
+    <footer class="border-t border-slate-800 py-8 px-6 text-center text-sm text-slate-400 bg-slate-900/30">
+        <div class="mb-2 font-semibold text-slate-300">CyberForges Security & SEO Suite</div>
         &copy; 2026 CyberForges. All rights reserved.
     </footer>
 
@@ -176,7 +176,7 @@
             resultsSection.classList.remove('hidden');
             downloadBtn.classList.add('hidden');
             consultationBox.classList.add('hidden');
-            resultsContent.innerHTML = `<p class="text-yellow-400">Running Security & SEO Audit for <strong>${domain}</strong>... Please wait.</p>`;
+            resultsContent.innerHTML = `<p class="text-yellow-400 font-semibold">Running Security & SEO Audit for <strong>${domain}</strong>... Please wait.</p>`;
             document.getElementById('leadSuccess').classList.add('hidden');
             
             try {
@@ -188,7 +188,6 @@
 
                 const data = await response.json();
                 
-                // Simulating SEO Ranking metrics alongside security data
                 lastScanData = {
                     ...data,
                     seoScore: Math.floor(Math.random() * 25) + 70,
@@ -202,45 +201,45 @@
                     consultationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
                     resultsContent.innerHTML = `
-                        <div class="grid grid-cols-2 gap-3 mb-4">
-                            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
-                                <div class="text-xs text-slate-400">Security Score</div>
-                                <div class="text-base font-bold text-emerald-400 mt-1">${data.score}/100</div>
+                        <div class="grid grid-cols-2 gap-4 mb-5">
+                            <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-center">
+                                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Security Score</div>
+                                <div class="text-xl font-extrabold text-emerald-400 mt-1">${data.score}/100</div>
                             </div>
-                            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
-                                <div class="text-xs text-slate-400">Google SEO Score</div>
-                                <div class="text-base font-bold text-cyan-400 mt-1">${lastScanData.seoScore}/100</div>
+                            <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-center">
+                                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Google SEO Score</div>
+                                <div class="text-xl font-extrabold text-cyan-400 mt-1">${lastScanData.seoScore}/100</div>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
-                                <span class="font-semibold text-cyan-300">HTTPS & SSL:</span> ${data.checks.https.description}
+                        <div class="space-y-3">
+                            <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-sm">
+                                <span class="font-bold text-cyan-300 block mb-1">🔒 HTTPS & SSL:</span> ${data.checks.https.description}
                             </div>
-                            <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
-                                <span class="font-semibold text-yellow-300">Security Headers:</span> ${data.checks.headers.description}
+                            <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-sm">
+                                <span class="font-bold text-yellow-300 block mb-1">🛡️ Security Headers:</span> ${data.checks.headers.description}
                             </div>
-                            <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
-                                <span class="font-semibold text-emerald-300">Google Ranking / SEO:</span> ${lastScanData.seoStatus}
+                            <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800 text-sm">
+                                <span class="font-bold text-emerald-300 block mb-1">📈 Google Ranking / SEO:</span> ${lastScanData.seoStatus}
                             </div>
                         </div>
                     `;
                 } else {
-                    resultsContent.innerHTML = `<p class="text-rose-400">Error: ${data.error || 'Something went wrong.'}</p>`;
+                    resultsContent.innerHTML = `<p class="text-rose-400 font-semibold">Error: ${data.error || 'Something went wrong.'}</p>`;
                 }
             } catch (err) {
-                resultsContent.innerHTML = `<p class="text-rose-400">Could not connect to backend server.</p>`;
+                resultsContent.innerHTML = `<p class="text-rose-400 font-semibold">Could not connect to backend server.</p>`;
             }
         });
 
-        // Professional PDF Generator with Security + SEO
+        // High-End Professional PDF Generator
         function downloadPDF() {
             if (!lastScanData) return;
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Header Banner
+            // Header Banner (Dark Navy)
             doc.setFillColor(15, 23, 42);
-            doc.rect(0, 0, 210, 50, 'F');
+            doc.rect(0, 0, 210, 48, 'F');
 
             doc.setTextColor(6, 182, 212);
             doc.setFontSize(22);
@@ -250,58 +249,58 @@
             doc.setTextColor(148, 163, 184);
             doc.setFontSize(10);
             doc.setFont("helvetica", "normal");
-            doc.text("Website Security & Google SEO Ranking Audit Report", 20, 31);
+            doc.text("Executive Website Security & Google SEO Audit Report", 20, 31);
 
             doc.setTextColor(203, 213, 225);
             doc.setFontSize(9);
             doc.text(`Date: ${new Date().toLocaleDateString()}`, 150, 22);
-            doc.text("Status: Verified", 150, 31);
+            doc.text("Status: Certified", 150, 31);
 
-            // Scores Summary Box
+            // Summary Card Box
             doc.setFillColor(248, 250, 252);
             doc.setDrawColor(226, 232, 240);
-            doc.roundedRect(20, 60, 170, 28, 3, 3, 'FD');
+            doc.roundedRect(20, 58, 170, 25, 3, 3, 'FD');
 
             doc.setTextColor(30, 41, 59);
-            doc.setFontSize(10);
+            doc.setFontSize(11);
             doc.setFont("helvetica", "bold");
-            doc.text(`Domain: ${lastScanData.domain}`, 26, 77);
+            doc.text(`Domain: ${lastScanData.domain}`, 26, 74);
 
-            doc.text(`Security: ${lastScanData.score}/100`, 115, 77);
-            doc.text(`SEO Rank: ${lastScanData.seoScore}/100`, 150, 77);
+            doc.text(`Security Score: ${lastScanData.score}/100`, 110, 74);
+            doc.text(`SEO Rank: ${lastScanData.seoScore}/100`, 150, 74);
 
             // Section Heading
             doc.setTextColor(15, 23, 42);
-            doc.setFontSize(13);
+            doc.setFontSize(14);
             doc.setFont("helvetica", "bold");
-            doc.text("Detailed Intelligence Breakdown:", 20, 105);
+            doc.text("Detailed Security & SEO Intelligence Analysis:", 20, 98);
 
             const items = [
-                { title: "HTTPS & SSL Security", desc: lastScanData.checks.https.description },
-                { title: "Security Headers Evaluation", desc: lastScanData.checks.headers.description },
-                { title: "Google SEO & Indexing Health", desc: lastScanData.seoStatus }
+                { title: "HTTPS & SSL Secure Connection", desc: lastScanData.checks.https.description },
+                { title: "HTTP Security Headers Audit", desc: lastScanData.checks.headers.description },
+                { title: "Google SEO Indexing & Metadata Health", desc: lastScanData.seoStatus }
             ];
 
-            let startY = 115;
+            let startY = 108;
             items.forEach((item, index) => {
                 doc.setDrawColor(203, 213, 225);
                 doc.setFillColor(255, 255, 255);
-                doc.roundedRect(20, startY, 170, 28, 2, 2, 'FD');
+                doc.roundedRect(20, startY, 170, 32, 2, 2, 'FD');
 
                 doc.setFillColor(6, 182, 212);
-                doc.rect(20, startY, 2, 28, 'F');
+                doc.rect(20, startY, 2.5, 32, 'F');
 
                 doc.setTextColor(15, 23, 42);
-                doc.setFontSize(10);
+                doc.setFontSize(11);
                 doc.setFont("helvetica", "bold");
-                doc.text(`${index + 1}. ${item.title}`, 28, startY + 10);
+                doc.text(`${index + 1}. ${item.title}`, 28, startY + 11);
 
                 doc.setTextColor(71, 85, 105);
-                doc.setFontSize(9);
+                doc.setFontSize(9.5);
                 doc.setFont("helvetica", "normal");
-                doc.text(item.desc, 28, startY + 19, { maxWidth: 155 });
+                doc.text(item.desc, 28, startY + 21, { maxWidth: 155 });
 
-                startY += 35;
+                startY += 38;
             });
 
             // Footer
@@ -309,11 +308,11 @@
             doc.line(20, 275, 190, 275);
 
             doc.setTextColor(100, 116, 139);
-            doc.setFontSize(8);
-            doc.text("CyberForges Security & SEO Solutions", 20, 283);
-            doc.text("security.cyberforges.com", 165, 283);
+            doc.setFontSize(8.5);
+            doc.text("CyberForges Security & SEO Solutions — Confidential Executive Report", 20, 283);
+            doc.text("security.cyberforges.com", 160, 283);
 
-            doc.save(`CyberForges_Audit_Report_${lastScanData.domain}.pdf`);
+            doc.save(`CyberForges_Executive_Audit_${lastScanData.domain}.pdf`);
         }
 
         document.getElementById('leadForm').addEventListener('submit', async function(e) {
