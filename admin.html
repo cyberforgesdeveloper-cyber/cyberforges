@@ -3,69 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberForges - Admin Dashboard</title>
+    <title>CyberForges - Secure Admin Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
 
     <!-- Header -->
-    <header class="border-b border-slate-800 py-4 px-6 flex justify-between items-center bg-slate-900/50 backdrop-blur">
+    <header class="border-b border-slate-800 py-4 px-6 md:px-12 flex justify-between items-center bg-slate-900/80 backdrop-blur sticky top-0 z-50">
         <div class="flex items-center space-x-2">
-            <span class="text-xl font-bold tracking-wider text-cyan-400">CYBERFORGES</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">Admin Portal</span>
+            <span class="text-xl font-extrabold tracking-wider text-cyan-400">CYBERFORGES</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">Admin Control Center</span>
         </div>
-        <div id="logoutSection" class="hidden">
-            <button onclick="handleLogout()" class="text-xs text-rose-400 hover:text-rose-300 border border-rose-900/50 px-3 py-1.5 rounded-lg bg-rose-950/30 transition cursor-pointer">
+        <div id="logoutSection" class="hidden flex items-center space-x-4">
+            <span class="text-xs text-slate-400 hidden sm:inline">Logged in as Administrator</span>
+            <button onclick="handleLogout()" class="text-xs text-rose-400 hover:text-rose-300 border border-rose-900/50 px-3 py-1.5 rounded-lg bg-rose-950/30 transition cursor-pointer font-semibold">
                 Logout
             </button>
         </div>
     </header>
 
     <!-- Main Container -->
-    <main class="flex-grow flex items-center justify-center px-4 py-10">
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
         
         <!-- Login Box -->
-        <div id="loginBox" class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
-            <h1 class="text-xl font-bold text-center mb-1">Admin Login</h1>
-            <p class="text-slate-400 text-center text-xs mb-6">Enter password to access security leads.</p>
+        <div id="loginBox" class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 to-cyan-500"></div>
+            
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-rose-950 text-rose-400 flex items-center justify-center font-bold text-xl mx-auto mb-3 border border-rose-800">🔒</div>
+                <h1 class="text-xl font-bold">Restricted Access</h1>
+                <p class="text-slate-400 text-xs mt-1">Enter admin password to view captured security leads.</p>
+            </div>
             
             <form id="loginForm" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Password</label>
-                    <input type="password" id="adminPassword" placeholder="Enter admin password" required
+                    <input type="password" id="adminPassword" placeholder="Enter password (default: admin123)" required
                         class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition">
                 </div>
                 <button type="submit" 
                     class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-4 rounded-xl text-sm transition shadow-lg shadow-cyan-500/20 cursor-pointer">
-                    Login to Dashboard
+                    Authenticate
                 </button>
                 <p id="loginError" class="hidden text-xs text-rose-400 text-center font-semibold">Incorrect password! Try 'admin123'.</p>
             </form>
         </div>
 
         <!-- Dashboard Content -->
-        <div id="dashboardBox" class="hidden max-w-5xl w-full mx-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-bold">Captured Security Leads</h1>
-                <button onclick="fetchLeads()" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 rounded-lg text-xs transition cursor-pointer">
-                    Refresh Leads
-                </button>
+        <div id="dashboardBox" class="hidden max-w-6xl w-full mx-auto">
+            
+            <!-- Top Summary Bar -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Security Leads & Audit Requests</h1>
+                    <p class="text-slate-400 text-xs mt-1">Manage potential clients who requested custom security consultations.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-xs">
+                        Total Leads: <span id="leadCount" class="font-bold text-cyan-400">0</span>
+                    </div>
+                    <button onclick="fetchLeads()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-4 py-2 rounded-xl text-xs transition cursor-pointer border border-slate-700">
+                        Refresh Data
+                    </button>
+                </div>
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+            <!-- Leads Table Card -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="border-b border-slate-800 bg-slate-950/50 text-xs text-slate-400 uppercase tracking-wider">
-                                <th class="p-4">Name</th>
-                                <th class="p-4">Email</th>
+                            <tr class="border-b border-slate-800 bg-slate-950/60 text-xs text-slate-400 uppercase tracking-wider">
+                                <th class="p-4 pl-6">Client Name</th>
+                                <th class="p-4">Email Address</th>
                                 <th class="p-4">Target Domain</th>
                                 <th class="p-4">Date / Time</th>
+                                <th class="p-4 pr-6 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="leadsTableBody" class="text-sm divide-y divide-slate-800">
+                        <tbody id="leadsTableBody" class="text-sm divide-y divide-slate-800/60">
                             <tr>
-                                <td colspan="4" class="p-6 text-center text-slate-500">Loading leads...</td>
+                                <td colspan="5" class="p-8 text-center text-slate-500">Loading leads from secure database...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -76,12 +94,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-        &copy; 2026 CyberForges. Internal Admin Panel.
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500 bg-slate-900/30">
+        &copy; 2026 CyberForges. Secure Internal Administration.
     </footer>
 
     <script>
-        // NOTE: Yahan bhi backend ka URL change karna hoga jab live karein
         const API_URL = 'https://cyberforges.onrender.com';
         const ADMIN_PASS = "admin123";
 
@@ -119,27 +136,40 @@
 
         async function fetchLeads() {
             const tableBody = document.getElementById('leadsTableBody');
-            tableBody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-slate-500">Fetching leads...</td></tr>`;
+            const leadCount = document.getElementById('leadCount');
+            tableBody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-slate-500">Fetching leads...</td></tr>`;
 
             try {
                 const response = await fetch(`${API_URL}/api/leads`);
                 const leads = await response.json();
 
+                leadCount.textContent = leads.length;
+
                 if (leads.length === 0) {
-                    tableBody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-slate-500">No leads captured yet.</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-slate-500">No security leads captured yet. Run a scan and submit a consultation request to test!</td></tr>`;
                     return;
                 }
 
                 tableBody.innerHTML = leads.map(lead => `
                     <tr class="hover:bg-slate-800/40 transition">
-                        <td class="p-4 font-semibold text-cyan-300">${lead.name}</td>
-                        <td class="p-4 text-slate-300">${lead.email}</td>
-                        <td class="p-4 text-slate-300">${lead.domain}</td>
-                        <td class="p-4 text-xs text-slate-500">${new Date(lead.date).toLocaleString()}</td>
+                        <td class="p-4 pl-6 font-semibold text-cyan-300">${lead.name}</td>
+                        <td class="p-4 text-slate-300">
+                            <a href="mailto:${lead.email}" class="hover:text-cyan-400 underline decoration-slate-700">${lead.email}</a>
+                        </td>
+                        <td class="p-4">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-xs text-slate-300 font-mono">${lead.domain}</span>
+                        </td>
+                        <td class="p-4 text-xs text-slate-400">${new Date(lead.date).toLocaleString()}</td>
+                        <td class="p-4 pr-6 text-right">
+                            <a href="mailto:${lead.email}?subject=CyberForges Security Consultation - Regarding ${lead.domain}" 
+                               class="inline-block bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 font-semibold px-3 py-1.5 rounded-lg text-xs transition border border-cyan-500/30">
+                                Email Client
+                            </a>
+                        </td>
                     </tr>
                 `).join('');
             } catch (err) {
-                tableBody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-rose-400">Could not connect to backend server.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-rose-400">Could not connect to backend server. Make sure Render backend is running.</td></tr>`;
             }
         }
     </script>
