@@ -9,12 +9,27 @@
     <meta name="keywords" content="website security checker, free seo audit, google ranking checker, ssl scanner, small business cybersecurity, cyberforges">
     <meta name="author" content="Talha Tahir">
     
-    <!-- Hide Netlify Badge via CSS -->
+    <!-- Advanced Netlify Badge Remover (CSS & JS) -->
     <style>
-        #netlify-badge, iframe[src*="netlify"] {
+        #netlify-badge, iframe[src*="netlify"], div[style*="z-index: 99999"] {
             display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
     </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setInterval(() => {
+                const badges = document.querySelectorAll('iframe, #netlify-badge');
+                badges.forEach(el => {
+                    if (el.src && el.src.includes('netlify')) {
+                        el.remove();
+                    }
+                });
+            }, 500);
+        });
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
