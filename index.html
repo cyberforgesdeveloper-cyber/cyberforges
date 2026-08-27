@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberForges - Free Website Security Checker & Vulnerability Scanner</title>
+    <meta name="description" content="Protect your small business website with CyberForges free instant security scanner. Check HTTPS, SSL certificates, and security headers in seconds.">
+    <meta name="keywords" content="website security checker, free ssl checker, vulnerability scanner, small business cybersecurity, cyberforges">
+    <meta name="author" content="Talha Tahir">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800 py-4 px-6 flex justify-between items-center bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="flex items-center space-x-2">
+            <span class="text-xl font-bold tracking-wider text-cyan-400">CYBERFORGES</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Security Suite</span>
+        </div>
+        <div class="text-sm text-slate-400 hidden sm:block">Expert Web Solutions & Security</div>
+    </header>
+
+    <!-- Main Hero & Scanner Container -->
+    <main class="flex-grow">
+        <section class="max-w-4xl mx-auto px-4 pt-16 pb-8 text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+                Secure Your Digital Business with <span class="text-cyan-400">CyberForges</span>
+            </h1>
+            <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-8">
+                Instantly check your website's security posture, identify missing SSL headers, and generate a professional security report for free.
+            </p>
+        </section>
+
+        <!-- Scanner Card -->
+        <section class="max-w-xl mx-auto px-4 pb-20">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                <h2 class="text-xl font-bold text-center mb-2">Free Instant Website Scan</h2>
+                <p class="text-slate-400 text-center text-xs mb-6">Enter your domain name below to start the automated assessment.</p>
+                
+                <!-- Scan Form -->
+                <form id="scanForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Website Domain</label>
+                        <input type="text" id="domainInput" placeholder="e.g. example.com" required
+                            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-cyan-500 transition">
+                    </div>
+                    <button type="submit" 
+                        class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-4 rounded-xl transition shadow-lg shadow-cyan-500/20 cursor-pointer">
+                        Run Security Scan
+                    </button>
+                </form>
+
+                <!-- Results Section -->
+                <div id="resultsSection" class="hidden mt-8 pt-6 border-t border-slate-800">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-cyan-400">Scan Results</h3>
+                        <button id="downloadPdfBtn" onclick="downloadPDF()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition cursor-pointer flex items-center space-x-1">
+                            <span>Download PDF Report</span>
+                        </button>
+                    </div>
+                    <div id="resultsContent" class="space-y-3 text-sm text-slate-300">
+                        <!-- Dynamic results -->
+                    </div>
+
+                    <!-- Lead Capture Box -->
+                    <div class="mt-6 p-5 bg-slate-950 rounded-xl border border-cyan-900/50">
+                        <h4 class="text-sm font-bold text-cyan-300 mb-1">Want a full security audit & expert fix?</h4>
+                        <p class="text-xs text-slate-400 mb-4">Get in touch with CyberForges security team to protect your business.</p>
+                        <form id="leadForm" class="space-y-3">
+                            <input type="text" id="leadName" placeholder="Your Name" required
+                                class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-cyan-500">
+                            <input type="email" id="leadEmail" placeholder="Your Business Email" required
+                                class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-cyan-500">
+                            <button type="submit" 
+                                class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2 px-3 rounded-lg text-xs transition cursor-pointer">
+                                Request Free Consultation
+                            </button>
+                        </form>
+                        <p id="leadSuccess" class="hidden mt-2 text-xs text-emerald-400 text-center font-semibold">Thank you! Your request has been saved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        &copy; 2026 CyberForges. All rights reserved. Professional Security & Development Solutions.
+    </footer>
+
+    <script>
+        // NOTE: Jab aap backend live karein, toh yeh localhost link hata kar apna Render URL yahan daal dein
+        const API_URL = 'http://localhost:5000';
+
+        let scannedDomain = '';
+        let lastScanData = null;
+
+        document.getElementById('scanForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const domain = document.getElementById('domainInput').value;
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContent = document.getElementById('resultsContent');
+            const downloadBtn = document.getElementById('downloadPdfBtn');
+            
+            scannedDomain = domain;
+            resultsSection.classList.remove('hidden');
+            downloadBtn.classList.add('hidden');
+            resultsContent.innerHTML = `<p class="text-yellow-400">Scanning <strong>${domain}</strong>... Please wait.</p>`;
+            document.getElementById('leadSuccess').classList.add('hidden');
+            
+            try {
+                const response = await fetch(`${API_URL}/api/scan`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ domain })
+                });
+
+                const data = await response.json();
+                lastScanData = data;
+
+                if (response.ok) {
+                    downloadBtn.classList.remove('hidden');
+                    resultsContent.innerHTML = `
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mb-4">
+                            <div class="text-sm text-slate-400">Target Domain: <span class="text-cyan-400 font-semibold">${data.domain}</span></div>
+                            <div class="text-lg font-bold mt-1">Security Score: <span class="text-emerald-400">${data.score}/100</span></div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
+                                <span class="font-semibold text-cyan-300">HTTPS:</span> ${data.checks.https.description}
+                            </div>
+                            <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
+                                <span class="font-semibold text-yellow-300">SSL/TLS:</span> ${data.checks.ssl.description}
+                            </div>
+                            <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
+                                <span class="font-semibold text-rose-300">Headers:</span> ${data.checks.headers.description}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    resultsContent.innerHTML = `<p class="text-rose-400">Error: ${data.error || 'Something went wrong.'}</p>`;
+                }
+            } catch (err) {
+                resultsContent.innerHTML = `<p class="text-rose-400">Could not connect to the backend server. Make sure server.js is running.</p>`;
+            }
+        });
+
+        function downloadPDF() {
+            if (!lastScanData) return;
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFillColor(15, 23, 42);
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(6, 182, 212);
+            doc.setFontSize(22);
+            doc.text("CYBERFORGES", 20, 25);
+            doc.setTextColor(148, 163, 184);
+            doc.setFontSize(10);
+            doc.text("Website Security Assessment Report", 140, 25);
+
+            doc.setTextColor(30, 41, 59);
+            doc.setFontSize(14);
+            doc.text(`Target Domain: ${lastScanData.domain}`, 20, 55);
+            doc.text(`Security Score: ${lastScanData.score} / 100`, 20, 65);
+            doc.text(`Generated Date: ${new Date().toLocaleDateString()}`, 20, 75);
+
+            doc.setDrawColor(200, 200, 200);
+            doc.line(20, 85, 190, 85);
+
+            doc.setFontSize(12);
+            doc.text("Detailed Security Checks:", 20, 98);
+            doc.setFontSize(10);
+            doc.setTextColor(70, 70, 70);
+            doc.text(`- HTTPS Check: ${lastScanData.checks.https.description}`, 20, 110, { maxWidth: 170 });
+            doc.text(`- SSL/TLS Status: ${lastScanData.checks.ssl.description}`, 20, 130, { maxWidth: 170 });
+            doc.text(`- Security Headers: ${lastScanData.checks.headers.description}`, 20, 150, { maxWidth: 170 });
+
+            doc.setTextColor(150, 150, 150);
+            doc.setFontSize(9);
+            doc.text("CyberForges Security Solutions - Professional Small Business Audits", 20, 280);
+
+            doc.save(`CyberForges_Security_Report_${lastScanData.domain}.pdf`);
+        }
+
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('leadName').value;
+            const email = document.getElementById('leadEmail').value;
+            
+            try {
+                const response = await fetch(`${API_URL}/api/lead`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, domain: scannedDomain })
+                });
+
+                if (response.ok) {
+                    document.getElementById('leadSuccess').classList.remove('hidden');
+                    this.reset();
+                } else {
+                    alert('Failed to save lead. Please try again.');
+                }
+            } catch (err) {
+                alert('Server connection error.');
+            }
+        });
+    </script>
+</body>
+</html>
