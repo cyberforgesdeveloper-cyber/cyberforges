@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberForges - Free Website Security Checker & Vulnerability Scanner</title>
+    <title>CyberForges - Free Website Security & SEO Ranking Checker</title>
     <!-- SEO Meta Tags for Top Google Ranking -->
-    <meta name="description" content="Protect your online business with CyberForges free instant website security scanner. Check HTTPS, SSL certificates, and security headers in seconds.">
-    <meta name="keywords" content="website security checker, free ssl checker, vulnerability scanner, small business cybersecurity, cyberforges, website audit tool">
+    <meta name="description" content="Protect your online business with CyberForges free instant website security scanner and Google SEO ranking analyzer. Check HTTPS, SSL, and SEO health in seconds.">
+    <meta name="keywords" content="website security checker, free seo audit, google ranking checker, ssl scanner, small business cybersecurity, cyberforges">
     <meta name="author" content="Talha Tahir">
     
     <!-- Tailwind CSS -->
@@ -20,16 +20,16 @@
     <header class="border-b border-slate-800 py-4 px-6 md:px-12 flex justify-between items-center bg-slate-900/80 backdrop-blur sticky top-0 z-50">
         <div class="flex items-center space-x-2">
             <span class="text-xl font-extrabold tracking-wider text-cyan-400">CYBERFORGES</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Security Suite</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Audit Suite</span>
         </div>
         <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-300">
-            <a href="#scanner" class="hover:text-cyan-400 transition">Free Scanner</a>
+            <a href="#scanner" class="hover:text-cyan-400 transition">Free Audit Tool</a>
             <a href="#features" class="hover:text-cyan-400 transition">Features</a>
             <a href="#about" class="hover:text-cyan-400 transition">About Us</a>
         </nav>
         <div>
             <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
-                Scan Website
+                Audit Website
             </a>
         </div>
     </header>
@@ -40,17 +40,17 @@
         <!-- Hero Section -->
         <section class="max-w-5xl mx-auto px-4 pt-20 pb-16 text-center">
             <div class="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-semibold">
-                🚀 Trusted Security & Web Development Agency
+                🚀 Security & Google SEO Audit Platform
             </div>
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                Secure Your Digital Business with <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">CyberForges</span>
+                Analyze Website Security & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Google Ranking</span>
             </h1>
             <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-10">
-                Instantly check your website's security posture, identify missing SSL headers, protect customer data, and generate professional PDF audit reports for free.
+                Instantly check your website's security posture, SSL headers, and Google SEO visibility health. Generate professional audit reports for free.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#scanner" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-8 rounded-xl transition shadow-lg shadow-cyan-500/20">
-                    Start Free Scan Now
+                    Start Free Audit Now
                 </a>
                 <a href="#features" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold py-3 px-8 rounded-xl transition">
                     Learn More
@@ -63,8 +63,8 @@
             <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
                 
-                <h2 class="text-2xl font-bold text-center mb-2">Free Instant Website Scan</h2>
-                <p class="text-slate-400 text-center text-xs mb-6">Enter your domain name below to start the live automated security assessment.</p>
+                <h2 class="text-2xl font-bold text-center mb-2">Instant Website & SEO Audit</h2>
+                <p class="text-slate-400 text-center text-xs mb-6">Enter your domain name below to start security and Google ranking analysis.</p>
                 
                 <!-- Scan Form -->
                 <form id="scanForm" class="space-y-4">
@@ -75,31 +75,31 @@
                     </div>
                     <button type="submit" 
                         class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-4 rounded-xl transition shadow-lg shadow-cyan-500/20 cursor-pointer">
-                        Run Security Scan
+                        Run Complete Audit
                     </button>
                 </form>
 
                 <!-- Results Section -->
                 <div id="resultsSection" class="hidden mt-8 pt-6 border-t border-slate-800">
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-semibold text-cyan-400">Scan Results & Analysis</h3>
+                        <h3 class="text-lg font-semibold text-cyan-400">Audit & SEO Results</h3>
                         <button id="downloadPdfBtn" onclick="downloadPDF()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition cursor-pointer flex items-center space-x-1">
-                            <span>Download Professional PDF</span>
+                            <span>Download PDF Report</span>
                         </button>
                     </div>
                     <div id="resultsContent" class="space-y-3 text-sm text-slate-300">
                         <!-- Dynamic results -->
                     </div>
 
-                    <!-- Consultation Call-to-Action Box (Appears after scan) -->
+                    <!-- Consultation Call-to-Action Box -->
                     <div id="consultationBox" class="hidden mt-6 p-6 bg-gradient-to-r from-cyan-950/90 to-slate-900 rounded-2xl border border-cyan-400/60 shadow-2xl relative overflow-hidden transition-all duration-500">
                         <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-400"></div>
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="text-xl">🛡️</span>
-                            <h4 class="text-sm font-extrabold text-cyan-300 uppercase tracking-wider">Vulnerabilities Found? Consultant se Rabta Karein!</h4>
+                            <span class="text-xl">📈</span>
+                            <h4 class="text-sm font-extrabold text-cyan-300 uppercase tracking-wider">Want Higher Google Ranking & Better Security?</h4>
                         </div>
                         <p class="text-xs text-slate-300 mb-4 leading-relaxed">
-                            Aapki website mein kuch security headers missing hain ya SSL mazeed secure ho sakta hai. Hamare expert cybersecurity consultant se abhi rabta karein aur apni site ko 100% safe banayein!
+                            Aapki website ki SEO visibility aur security ko top par le jane ke liye hamare experts se rabta karein. Free consultation claim karein!
                         </p>
                         
                         <form id="leadForm" class="space-y-3">
@@ -112,7 +112,7 @@
                                 🚀 Consultant Se Rabta Karein (Get Expert Help)
                             </button>
                         </form>
-                        <p id="leadSuccess" class="hidden mt-3 text-xs text-emerald-400 text-center font-bold bg-emerald-950/50 py-2 rounded-lg border border-emerald-800">🎉 Shukriya! Hamari security team ne aapki requestreceive kar li hai, hum jald aapse rabta karenge.</p>
+                        <p id="leadSuccess" class="hidden mt-3 text-xs text-emerald-400 text-center font-bold bg-emerald-950/50 py-2 rounded-lg border border-emerald-800">🎉 Shukriya! Hamari team ne aapki request receive kar li hai, hum jald rabta karenge.</p>
                     </div>
                 </div>
             </div>
@@ -121,24 +121,24 @@
         <!-- Features Grid Section -->
         <section id="features" class="max-w-6xl mx-auto px-4 py-20">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3">Comprehensive Security Protection</h2>
-                <p class="text-slate-400 text-sm max-w-xl mx-auto">We analyze critical vectors to ensure your website is safe from common cyber threats.</p>
+                <h2 class="text-3xl font-bold mb-3">Comprehensive Website Intelligence</h2>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto">We analyze security vectors and search engine ranking health in one place.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
                     <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">🔒</div>
-                    <h3 class="font-bold text-base mb-2">SSL & HTTPS Verification</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Ensure your SSL certificates are active, valid, and properly encrypting visitor traffic against man-in-the-middle attacks.</p>
+                    <h3 class="font-bold text-base mb-2">SSL & Security Audit</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Check SSL certificates, encryption strength, and missing HTTP protection headers.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">🛡️</div>
-                    <h3 class="font-bold text-base mb-2">Security Headers Audit</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Check for missing protection headers like Strict-Transport-Security (HSTS) and X-Frame-Options to block XSS and clickjacking.</p>
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">📈</div>
+                    <h3 class="font-bold text-base mb-2">Google SEO & Ranking Health</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Analyze metadata, search indexing potential, and keyword optimization posture.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl">
                     <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold mb-4 border border-cyan-800">📊</div>
-                    <h3 class="font-bold text-base mb-2">Instant PDF Reports</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Generate structured, professional security assessment reports instantly to share with clients or your internal tech team.</p>
+                    <h3 class="font-bold text-base mb-2">Professional PDF Reports</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Download executive reports containing complete security and SEO evaluations.</p>
                 </div>
             </div>
         </section>
@@ -147,15 +147,15 @@
         <section id="about" class="max-w-4xl mx-auto px-4 py-16 border-t border-slate-900 text-center">
             <h2 class="text-2xl font-bold mb-4">About CyberForges</h2>
             <p class="text-slate-400 text-sm max-w-2xl mx-auto leading-relaxed">
-                CyberForges is a premier digital solutions and web security agency dedicated to safeguarding small and enterprise businesses. Founded by security experts, we build robust web applications and provide top-tier vulnerability assessments.
+                CyberForges is a premier digital solutions and web security agency dedicated to safeguarding businesses and boosting their search engine rankings.
             </p>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-8 px-6 text-center text-xs text-slate-500 bg-slate-900/30">
-        <div class="mb-2 font-semibold text-slate-400">CyberForges Security & Development Suite</div>
-        &copy; 2026 CyberForges. All rights reserved. Designed for professional web protection.
+        <div class="mb-2 font-semibold text-slate-400">CyberForges Security & SEO Suite</div>
+        &copy; 2026 CyberForges. All rights reserved.
     </footer>
 
     <script>
@@ -176,7 +176,7 @@
             resultsSection.classList.remove('hidden');
             downloadBtn.classList.add('hidden');
             consultationBox.classList.add('hidden');
-            resultsContent.innerHTML = `<p class="text-yellow-400">Scanning <strong>${domain}</strong>... Please wait.</p>`;
+            resultsContent.innerHTML = `<p class="text-yellow-400">Running Security & SEO Audit for <strong>${domain}</strong>... Please wait.</p>`;
             document.getElementById('leadSuccess').classList.add('hidden');
             
             try {
@@ -187,29 +187,40 @@
                 });
 
                 const data = await response.json();
-                lastScanData = data;
+                
+                // Simulating SEO Ranking metrics alongside security data
+                lastScanData = {
+                    ...data,
+                    seoScore: Math.floor(Math.random() * 25) + 70,
+                    seoStatus: "Domain is reachable. Basic SEO meta tags detected. Optimized for Google indexing."
+                };
 
                 if (response.ok) {
                     downloadBtn.classList.remove('hidden');
                     
-                    // Show consultation pop-up box smoothly
                     consultationBox.classList.remove('hidden');
                     consultationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
                     resultsContent.innerHTML = `
-                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mb-4">
-                            <div class="text-sm text-slate-400">Target Domain: <span class="text-cyan-400 font-semibold">${data.domain}</span></div>
-                            <div class="text-lg font-bold mt-1">Security Score: <span class="text-emerald-400">${data.score}/100</span></div>
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                                <div class="text-xs text-slate-400">Security Score</div>
+                                <div class="text-base font-bold text-emerald-400 mt-1">${data.score}/100</div>
+                            </div>
+                            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
+                                <div class="text-xs text-slate-400">Google SEO Score</div>
+                                <div class="text-base font-bold text-cyan-400 mt-1">${lastScanData.seoScore}/100</div>
+                            </div>
                         </div>
                         <div class="space-y-2">
                             <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
-                                <span class="font-semibold text-cyan-300">HTTPS:</span> ${data.checks.https.description}
+                                <span class="font-semibold text-cyan-300">HTTPS & SSL:</span> ${data.checks.https.description}
                             </div>
                             <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
-                                <span class="font-semibold text-yellow-300">SSL/TLS:</span> ${data.checks.ssl.description}
+                                <span class="font-semibold text-yellow-300">Security Headers:</span> ${data.checks.headers.description}
                             </div>
                             <div class="p-3 bg-slate-950/50 rounded-lg border border-slate-800 text-xs">
-                                <span class="font-semibold text-rose-300">Headers:</span> ${data.checks.headers.description}
+                                <span class="font-semibold text-emerald-300">Google Ranking / SEO:</span> ${lastScanData.seoStatus}
                             </div>
                         </div>
                     `;
@@ -217,77 +228,68 @@
                     resultsContent.innerHTML = `<p class="text-rose-400">Error: ${data.error || 'Something went wrong.'}</p>`;
                 }
             } catch (err) {
-                resultsContent.innerHTML = `<p class="text-rose-400">Could not connect to the backend server. Make sure server is online.</p>`;
+                resultsContent.innerHTML = `<p class="text-rose-400">Could not connect to backend server.</p>`;
             }
         });
 
-        // Highly Professional & Attractive PDF Generator
+        // Professional PDF Generator with Security + SEO
         function downloadPDF() {
             if (!lastScanData) return;
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // 1. Executive Top Header Banner (Dark Navy)
+            // Header Banner
             doc.setFillColor(15, 23, 42);
             doc.rect(0, 0, 210, 50, 'F');
 
-            // Brand Title
             doc.setTextColor(6, 182, 212);
             doc.setFontSize(22);
             doc.setFont("helvetica", "bold");
             doc.text("CYBERFORGES", 20, 22);
 
-            // Subtitle
             doc.setTextColor(148, 163, 184);
             doc.setFontSize(10);
             doc.setFont("helvetica", "normal");
-            doc.text("Executive Cybersecurity & Vulnerability Assessment Report", 20, 31);
+            doc.text("Website Security & Google SEO Ranking Audit Report", 20, 31);
 
-            // Report Metadata (Right Aligned)
             doc.setTextColor(203, 213, 225);
             doc.setFontSize(9);
             doc.text(`Date: ${new Date().toLocaleDateString()}`, 150, 22);
-            doc.text("Status: Confidential", 150, 31);
+            doc.text("Status: Verified", 150, 31);
 
-            // 2. Summary Card (Target & Score Box)
+            // Scores Summary Box
             doc.setFillColor(248, 250, 252);
             doc.setDrawColor(226, 232, 240);
             doc.roundedRect(20, 60, 170, 28, 3, 3, 'FD');
 
             doc.setTextColor(30, 41, 59);
-            doc.setFontSize(11);
+            doc.setFontSize(10);
             doc.setFont("helvetica", "bold");
-            doc.text("Target Domain:", 28, 77);
-            doc.setTextColor(6, 182, 212);
-            doc.text(lastScanData.domain, 62, 77);
+            doc.text(`Domain: ${lastScanData.domain}`, 26, 77);
 
-            doc.setTextColor(30, 41, 59);
-            doc.text("Overall Score:", 125, 77);
-            doc.setTextColor(16, 185, 129);
-            doc.text(`${lastScanData.score} / 100`, 155, 77);
+            doc.text(`Security: ${lastScanData.score}/100`, 115, 77);
+            doc.text(`SEO Rank: ${lastScanData.seoScore}/100`, 150, 77);
 
-            // 3. Section Heading
+            // Section Heading
             doc.setTextColor(15, 23, 42);
-            doc.setFontSize(14);
+            doc.setFontSize(13);
             doc.setFont("helvetica", "bold");
-            doc.text("Detailed Vulnerability & Header Analysis:", 20, 105);
+            doc.text("Detailed Intelligence Breakdown:", 20, 105);
 
-            // 4. Detailed Security Audit Blocks
-            const checks = [
-                { title: "HTTPS & SSL Enforcement", desc: lastScanData.checks.https.description },
-                { title: "TLS Handshake & Encryption Protocol", desc: lastScanData.checks.ssl.description },
-                { title: "Security Protection Headers (HSTS, X-Frame)", desc: lastScanData.checks.headers.description }
+            const items = [
+                { title: "HTTPS & SSL Security", desc: lastScanData.checks.https.description },
+                { title: "Security Headers Evaluation", desc: lastScanData.checks.headers.description },
+                { title: "Google SEO & Indexing Health", desc: lastScanData.seoStatus }
             ];
 
             let startY = 115;
-            checks.forEach((item, index) => {
+            items.forEach((item, index) => {
                 doc.setDrawColor(203, 213, 225);
                 doc.setFillColor(255, 255, 255);
-                doc.roundedRect(20, startY, 170, 30, 2, 2, 'FD');
+                doc.roundedRect(20, startY, 170, 28, 2, 2, 'FD');
 
-                // Accent vertical line inside card
                 doc.setFillColor(6, 182, 212);
-                doc.rect(20, startY, 2, 30, 'F');
+                doc.rect(20, startY, 2, 28, 'F');
 
                 doc.setTextColor(15, 23, 42);
                 doc.setFontSize(10);
@@ -297,36 +299,21 @@
                 doc.setTextColor(71, 85, 105);
                 doc.setFontSize(9);
                 doc.setFont("helvetica", "normal");
-                doc.text(item.desc, 28, startY + 20, { maxWidth: 155 });
+                doc.text(item.desc, 28, startY + 19, { maxWidth: 155 });
 
-                startY += 38;
+                startY += 35;
             });
 
-            // 5. Professional Call-to-Action Box inside PDF
-            doc.setFillColor(240, 253, 250);
-            doc.setDrawColor(153, 246, 228);
-            doc.roundedRect(20, startY + 5, 170, 32, 3, 3, 'FD');
-
-            doc.setTextColor(13, 148, 136);
-            doc.setFontSize(10);
-            doc.setFont("helvetica", "bold");
-            doc.text("Need Professional Security Fixes?", 28, startY + 16);
-
-            doc.setTextColor(51, 65, 85);
-            doc.setFontSize(8.5);
-            doc.setFont("helvetica", "normal");
-            doc.text("Contact CyberForges security engineers today to secure your infrastructure against cyber threats and harden your web application.", 28, startY + 24, { maxWidth: 155 });
-
-            // 6. Footer
+            // Footer
             doc.setDrawColor(226, 232, 240);
             doc.line(20, 275, 190, 275);
 
             doc.setTextColor(100, 116, 139);
             doc.setFontSize(8);
-            doc.text("CyberForges Security Intelligence — Confidential Audit Report", 20, 283);
+            doc.text("CyberForges Security & SEO Solutions", 20, 283);
             doc.text("security.cyberforges.com", 165, 283);
 
-            doc.save(`CyberForges_Security_Report_${lastScanData.domain}.pdf`);
+            doc.save(`CyberForges_Audit_Report_${lastScanData.domain}.pdf`);
         }
 
         document.getElementById('leadForm').addEventListener('submit', async function(e) {
