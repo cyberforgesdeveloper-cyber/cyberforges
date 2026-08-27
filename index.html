@@ -82,7 +82,7 @@
                 <!-- Results Section -->
                 <div id="resultsSection" class="hidden mt-8 pt-6 border-t border-slate-800">
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-semibold text-cyan-400">Scan Results</h3>
+                        <h3 class="text-lg font-semibold text-cyan-400">Scan Results & Analysis</h3>
                         <button id="downloadPdfBtn" onclick="downloadPDF()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition cursor-pointer flex items-center space-x-1">
                             <span>Download PDF Report</span>
                         </button>
@@ -91,21 +91,28 @@
                         <!-- Dynamic results -->
                     </div>
 
-                    <!-- Lead Capture Box -->
-                    <div class="mt-6 p-5 bg-slate-950 rounded-xl border border-cyan-900/50">
-                        <h4 class="text-sm font-bold text-cyan-300 mb-1">Want a full security audit & expert fix?</h4>
-                        <p class="text-xs text-slate-400 mb-4">Get in touch with CyberForges security team to protect your online presence.</p>
+                    <!-- Highlighted Consultation Call-to-Action Box -->
+                    <div id="consultationBox" class="hidden mt-6 p-6 bg-gradient-to-r from-cyan-950/60 to-slate-900 rounded-2xl border border-cyan-500/40 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-400"></div>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-lg">🛡️</span>
+                            <h4 class="text-sm font-extrabold text-cyan-300 uppercase tracking-wider">Vulnerabilities Detected? Get Expert Help!</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                            Our cybersecurity engineers can fix missing headers, secure your SSL configuration, and harden your web app against cyber attacks.
+                        </p>
+                        
                         <form id="leadForm" class="space-y-3">
-                            <input type="text" id="leadName" placeholder="Your Name" required
-                                class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-cyan-500">
-                            <input type="email" id="leadEmail" placeholder="Your Business Email" required
-                                class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-cyan-500">
+                            <input type="text" id="leadName" placeholder="Your Full Name" required
+                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 transition">
+                            <input type="email" id="leadEmail" placeholder="Your Business Email Address" required
+                                class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 transition">
                             <button type="submit" 
-                                class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2 px-3 rounded-lg text-xs transition cursor-pointer">
-                                Request Free Consultation
+                                class="w-full bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 text-slate-950 font-extrabold py-3 px-4 rounded-xl text-xs transition shadow-lg shadow-cyan-500/20 cursor-pointer">
+                                Claim Free Security Consultation & Audit
                             </button>
                         </form>
-                        <p id="leadSuccess" class="hidden mt-2 text-xs text-emerald-400 text-center font-semibold">Thank you! Your request has been saved.</p>
+                        <p id="leadSuccess" class="hidden mt-3 text-xs text-emerald-400 text-center font-bold bg-emerald-950/50 py-2 rounded-lg border border-emerald-800">🎉 Thank you! Our security team has received your request and will contact you shortly.</p>
                     </div>
                 </div>
             </div>
@@ -163,10 +170,12 @@
             const resultsSection = document.getElementById('resultsSection');
             const resultsContent = document.getElementById('resultsContent');
             const downloadBtn = document.getElementById('downloadPdfBtn');
+            const consultationBox = document.getElementById('consultationBox');
             
             scannedDomain = domain;
             resultsSection.classList.remove('hidden');
             downloadBtn.classList.add('hidden');
+            consultationBox.classList.add('hidden');
             resultsContent.innerHTML = `<p class="text-yellow-400">Scanning <strong>${domain}</strong>... Please wait.</p>`;
             document.getElementById('leadSuccess').classList.add('hidden');
             
@@ -182,6 +191,7 @@
 
                 if (response.ok) {
                     downloadBtn.classList.remove('hidden');
+                    consultationBox.classList.remove('hidden');
                     resultsContent.innerHTML = `
                         <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mb-4">
                             <div class="text-sm text-slate-400">Target Domain: <span class="text-cyan-400 font-semibold">${data.domain}</span></div>
